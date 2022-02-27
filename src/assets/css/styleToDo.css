@@ -1,0 +1,90 @@
+.todo-root {
+  padding: 30px 50px;
+  font-family: sans-serif;
+}
+
+.todo-header {
+  font-size: 20px;
+  color: #000;
+  font-weight: 550;
+  text-align: center;
+}
+
+.todo-content {
+  margin-top: 50px;
+}
+
+.input-search {
+  width: 100%;
+  height: 36px;
+  border-radius: 3px;
+  border: 1px solid rgba(0, 0, 0, 0.35);
+  font-size: 14px;
+}
+
+.todo-item {
+  margin-top: 20px;
+}
+
+.card-root {
+  display: flex;
+  border: 1px solid #000;
+  padding: 15px;
+  align-items: center;
+}
+
+.card-title {
+  margin-left: 10px;
+}
+
+.button-detail {
+  margin-right: 20px;
+  color: #ffffff;
+  background-color: #5ebee9;
+  border-radius: 5px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 120px;
+  height: 36px;
+}
+
+.button-detail:hover {
+  background-color: #2389b7;
+}
+
+.button-remove {
+  color: #ffffff;
+  background-color: #ed7a7a;
+  border-radius: 5px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 120px;
+  height: 36px;
+}
+
+.button-remove:hover {
+  background-color: #e10e0e;
+}
+
+.card-detail {
+  border: 1px solid #000;
+  border-top: 0px;
+  padding: 30px;
+}
+
+.card-detail .input-title {
+  width: 99%;
+}
+
+.card-detail .description {
+  width: 99%;
+  max-width: 99%;
+}
+
+.card-detail .button-add {
+  margin-top: 50px;
+}
