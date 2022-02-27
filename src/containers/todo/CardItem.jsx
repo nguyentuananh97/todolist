@@ -5,6 +5,7 @@ import "../../assets/css/styleToDo.css";
 const CardItem = (props) => {
   const { item } = props;
   const { data, setData } = props;
+  const { listRemove, setListRemove } = props;
   const [openDetail, setOpenDetail] = useState(false);
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
@@ -20,6 +21,11 @@ const CardItem = (props) => {
 
   const clickDetailButton = () => {
     setOpenDetail(!openDetail);
+  };
+
+  const clickRemoveButton = () => {
+    const newData = data.filter((el) => el.id !== item.id);
+    setData(newData);
   };
 
   const changeTitle = (e) => {
@@ -40,7 +46,7 @@ const CardItem = (props) => {
 
   const clickUpdate = () => {
     const oldData = Object.assign([], data);
-    const findData = oldData.find((el) => el.title === item.title);
+    const findData = oldData.find((el) => el.id === item.id);
     findData.title = title;
     findData.description = description;
     findData.date = date;
@@ -48,18 +54,31 @@ const CardItem = (props) => {
     setData(oldData);
   };
 
+  const clickCheckbox = (e) => {
+    if (e.target.checked) {
+      const newList = Object.assign([], listRemove);
+      newList.push(item.id);
+      setListRemove(newList);
+    } else {
+      const newList = listRemove.filter((el) => el !== item.id);
+      setListRemove(newList);
+    }
+  };
+
   return (
     <div style={{ marginBottom: 30 }}>
       <div className="card-root">
         <div>
-          <input type="checkbox" />
+          <input type="checkbox" value={item.id} onChange={clickCheckbox} />
         </div>
         <div className="card-title">{item.title}</div>
         <div style={{ flexGrow: 1 }}></div>
         <div className="button-detail" onClick={clickDetailButton}>
           Detail
         </div>
-        <div className="button-remove">Remove</div>
+        <div className="button-remove" onClick={clickRemoveButton}>
+          Remove
+        </div>
       </div>
       {openDetail ? (
         <div className="card-detail">

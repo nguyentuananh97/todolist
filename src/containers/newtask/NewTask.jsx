@@ -4,6 +4,7 @@ import "../../assets/css/styleNewTask.css";
 
 const NewTask = (props) => {
   const { data, setData } = props;
+  const [id, setId] = useState(1);
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
   const [date, setDate] = useState(format(new Date(), "yyyy-MM-dd"));
@@ -35,6 +36,7 @@ const NewTask = (props) => {
   const clickAdd = () => {
     if (check()) {
       const newData = {
+        id: id,
         title: title,
         description: description,
         date: date,
@@ -44,6 +46,7 @@ const NewTask = (props) => {
       oldData.push(newData);
       setData(oldData);
       resetData();
+      setId(id + 1);
     } else {
       alert("Title is required");
     }
