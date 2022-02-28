@@ -1,16 +1,16 @@
 import React, { useState } from "react";
 import NewTask from "../containers/newtask/NewTask";
 import ToDoList from "../containers/todo/ToDoList";
-import "../assets/css/styleMain.css";
+import classes from "../assets/css/styleMain.module.css";
 
 const Main = () => {
   const [data, setData] = useState([]);
   return (
-    <div className="main-root">
-      <div className="left-container">
+    <div className={classes.mainRoot}>
+      <div className={classes.leftContainer}>
         <NewTask data={data} setData={setData} />
       </div>
-      <div className="right-container">
+      <div className={classes.rightContainer}>
         <ToDoList data={data} setData={setData} />
       </div>
     </div>
