@@ -1,15 +1,25 @@
-import React, { useRef, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { format } from "date-fns";
 import classes from "../../assets/css/NewTask.module.css";
 
 const NewTask = (props) => {
   const { setData } = props;
   const idRef = useRef(1);
-  const [id, setId] = useState(1);
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
   const [date, setDate] = useState(format(new Date(), "yyyy-MM-dd"));
   const [piority, setPiority] = useState("normal");
+
+  useEffect(() => {
+    const myStorage = JSON.parse(localStorage.getItem("data"));
+    if (myStorage !== null && myStorage.length > 0) {
+      const ids = myStorage.map((object) => {
+        return object.id;
+      });
+      const maxId = Math.max(...ids);
+      idRef.current = maxId + 1;
+    }
+  }, []);
 
   const changeTitle = (e) => {
     setTitle(e.target.value);
@@ -54,6 +64,9 @@ const NewTask = (props) => {
         date: date,
         piority: piority,
       };
+      const myStorage = JSON.parse(localStorage.getItem("data"));
+      myStorage.push(newData);
+      localStorage.setItem("data", JSON.stringify(myStorage));
       setData((prevState) => [...prevState, newData]);
       resetData();
       idRef.current += 1;
