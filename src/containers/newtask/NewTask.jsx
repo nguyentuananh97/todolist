@@ -1,6 +1,6 @@
 import React, { useRef, useState } from "react";
 import { format } from "date-fns";
-import classes from "../../assets/css/styleNewTask.module.css";
+import classes from "../../assets/css/NewTask.module.css";
 
 const NewTask = (props) => {
   const { setData } = props;
@@ -68,12 +68,12 @@ const NewTask = (props) => {
   };
 
   return (
-    <div className={classes.newtaskRoot}>
-      <div className={classes.newtaskHeader}>New Task</div>
-      <div className={classes.newtaskContent}>
+    <div className={classes.root}>
+      <div className={classes.header}>New Task</div>
+      <div className={classes.content}>
         <input
           type="text"
-          className={classes.inputTitle}
+          className={classes["input-title"]}
           placeholder="Add new task ..."
           value={title}
           onChange={changeTitle}
@@ -87,8 +87,8 @@ const NewTask = (props) => {
             value={description}
           ></textarea>
         </div>
-        <div style={{ display: "flex", marginTop: 20 }}>
-          <div style={{ width: "47%", marginRight: "6%" }}>
+        <div className={classes.datePiority}>
+          <div className={classes["box-date"]}>
             <div className={classes.label}>Due Date</div>
             <input
               type="date"
@@ -98,7 +98,7 @@ const NewTask = (props) => {
               min={format(new Date(), "yyyy-MM-dd")}
             />
           </div>
-          <div style={{ width: "47%" }}>
+          <div className={classes["box-piority"]}>
             <div className={classes.label}>Piority</div>
             <select
               className={classes.piority}
@@ -112,8 +112,8 @@ const NewTask = (props) => {
           </div>
         </div>
       </div>
-      <div className={classes.newtaskFooter}>
-        <div className={classes.buttonAdd} onClick={clickAdd}>
+      <div className={classes.footer}>
+        <div className={classes["button-add"]} onClick={clickAdd}>
           Add
         </div>
       </div>

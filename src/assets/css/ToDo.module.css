@@ -1,0 +1,87 @@
+.root {
+  font-family: sans-serif;
+  min-height: 92vh;
+  font-size: 12px;
+}
+
+.main {
+  padding: 30px 50px;
+  min-height: calc(92vh - 100px);
+}
+
+.header {
+  font-size: 18px;
+  color: #000000;
+  font-weight: 550;
+  text-align: center;
+}
+
+.content {
+  margin-top: 50px;
+}
+
+.input-search {
+  width: 100%;
+  height: 36px;
+  border-radius: 3px;
+  border: 1px solid #bdbdbd;
+  font-size: 12px;
+}
+
+.item {
+  margin-top: 20px;
+}
+
+.button-detail {
+  margin-right: 20px;
+  color: #ffffff;
+  background-color: #00bcd4;
+  border-radius: 5px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 120px;
+  height: 36px;
+}
+
+.button-detail:hover {
+  background-color: #2389b7;
+}
+
+.button-remove {
+  color: #ffffff;
+  background-color: #d9534f;
+  border-radius: 5px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 120px;
+  height: 36px;
+}
+
+.button-remove:hover {
+  background-color: #e10e0e;
+}
+
+.footer {
+  display: flex;
+  border-top: 1px solid #000000;
+  height: 100px;
+  align-items: center;
+  padding-left: 50px;
+  padding-right: 50px;
+  background-color: #f2f2f2;
+}
+
+@media (max-width: 768px) {
+  .button-remove {
+    width: 58px;
+    height: 24px;
+  }
+  .button-detail {
+    width: 58px;
+    height: 24px;
+  }
+}

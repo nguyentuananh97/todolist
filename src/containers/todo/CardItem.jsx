@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { format } from "date-fns";
-import classes from "../../assets/css/styleToDo.module.css";
+import classes from "../../assets/css/CardItem.module.css";
 
 const CardItem = (props) => {
   const { item } = props;
@@ -86,7 +86,7 @@ const CardItem = (props) => {
 
   return (
     <div style={{ marginBottom: 30 }}>
-      <div className={classes.cardRoot}>
+      <div className={classes.root}>
         <div>
           <input
             type="checkbox"
@@ -95,25 +95,25 @@ const CardItem = (props) => {
             onChange={clickCheckbox}
           />
         </div>
-        <div className={classes.cardTitle}>{item.title}</div>
+        <div className={classes.title}>{item.title}</div>
         <div style={{ flexGrow: 1 }}></div>
-        <div className={classes.buttonDetail} onClick={clickDetailButton}>
+        <div className={classes["button-detail"]} onClick={clickDetailButton}>
           Detail
         </div>
-        <div className={classes.buttonRemove} onClick={clickRemoveButton}>
+        <div className={classes["button-remove"]} onClick={clickRemoveButton}>
           Remove
         </div>
       </div>
       {openDetail ? (
-        <div className={classes.cardDetail}>
+        <div className={classes.detail}>
           <input
             type="text"
-            className={classes.inputTitle}
+            className={classes["input-title"]}
             placeholder="Enter task name ..."
             value={title}
             onChange={changeTitle}
           />
-          <div className={classes.description}>
+          <div className={classes["detail-description"]}>
             <div className={classes.label}>Description</div>
             <textarea
               className={classes.textarea}
@@ -123,23 +123,23 @@ const CardItem = (props) => {
             ></textarea>
           </div>
 
-          <div style={{ display: "flex", marginTop: 20 }}>
-            <div style={{ width: "47%", marginRight: "6%" }}>
+          <div className={classes["detail-datePiority"]}>
+            <div className={classes["detail-box-date"]}>
               <div className={classes.label}>Due Date</div>
               <input
                 type="date"
-                className={classes.dueDate}
+                className={classes["detail-dueDate"]}
                 value={date}
                 onChange={changeDate}
                 min={format(new Date(), "yyyy-MM-dd")}
               />
             </div>
-            <div style={{ width: "47%" }}>
+            <div className={classes["detail-box-piority"]}>
               <div className={classes.label} value={piority}>
                 Piority
               </div>
               <select
-                className={classes.piority}
+                className={classes["detail-piority"]}
                 value={piority}
                 onChange={changePiority}
               >
@@ -149,7 +149,7 @@ const CardItem = (props) => {
               </select>
             </div>
           </div>
-          <div className={classes.buttonAdd} onClick={clickUpdate}>
+          <div className={classes["button-add"]} onClick={clickUpdate}>
             Update
           </div>
         </div>

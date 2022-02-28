@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import CardItem from "./CardItem";
-import classes from "../../assets/css/styleToDo.module.css";
+import classes from "../../assets/css/ToDo.module.css";
 
 const ToDoList = (props) => {
   const { data, setData } = props;
@@ -36,18 +36,18 @@ const ToDoList = (props) => {
   };
 
   return (
-    <div className={classes.todoRoot}>
-      <div className={classes.todoMain}>
-        <div className={classes.todoHeader}>To Do List</div>
-        <div className={classes.todoContent}>
+    <div className={classes.root}>
+      <div className={classes.main}>
+        <div className={classes.header}>To Do List</div>
+        <div className={classes.content}>
           <input
             type="text"
-            className={classes.inputSearch}
+            className={classes["input-search"]}
             placeholder="Search ..."
             value={searchValue}
             onChange={searchData}
           />
-          <div className={classes.todoItem}>
+          <div className={classes.item}>
             {dataSearch.length > 0 ? (
               dataSearch.map((item, index) => (
                 <CardItem
@@ -68,11 +68,11 @@ const ToDoList = (props) => {
         </div>
       </div>
       {listRemove.length > 0 ? (
-        <div className={classes.todoFooter}>
+        <div className={classes.footer}>
           <div>Bulk Action:</div>
           <div style={{ flexGrow: 1 }}></div>
-          <div className={classes.buttonDetail}>Done</div>
-          <div className={classes.buttonRemove} onClick={clickRemove}>
+          <div className={classes["button-detail"]}>Done</div>
+          <div className={classes["button-remove"]} onClick={clickRemove}>
             Remove
           </div>
         </div>
