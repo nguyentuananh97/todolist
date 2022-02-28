@@ -1,0 +1,155 @@
+.root {
+  display: flex;
+  border: 1px solid #000000;
+  padding: 15px;
+  align-items: center;
+}
+
+.title {
+  margin-left: 10px;
+}
+
+.button-detail {
+  margin-right: 20px;
+  color: #ffffff;
+  background-color: #00bcd4;
+  border-radius: 5px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 120px;
+  height: 36px;
+}
+
+.button-detail:hover {
+  background-color: #2389b7;
+}
+
+.button-remove {
+  color: #ffffff;
+  background-color: #d9534f;
+  border-radius: 5px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 120px;
+  height: 36px;
+}
+
+.button-remove:hover {
+  background-color: #e10e0e;
+}
+
+.detail {
+  border: 1px solid #000000;
+  border-top: 0px;
+  padding: 30px;
+}
+
+.label {
+  font-size: 12px;
+  font-weight: 550;
+  margin-bottom: 10px;
+}
+
+.input-title {
+  width: 99%;
+  height: 36px;
+  border-radius: 3px;
+  border: 1px solid #bdbdbd;
+  font-size: 12px;
+}
+
+.textarea {
+  max-width: 100%;
+  width: 100%;
+  border-radius: 3px;
+  font-size: 12px;
+  border: 1px solid #000000;
+}
+
+.detail-description {
+  width: 99%;
+  max-width: 99%;
+  margin-top: 20px;
+}
+
+.detail-datePiority {
+  display: flex;
+  margin-top: 20px;
+}
+
+.detail-box-date {
+  width: 47%;
+  margin-right: 6%;
+}
+
+.detail-dueDate {
+  width: 100%;
+  height: 36px;
+  border-radius: 3px;
+  border: 1px solid #000000;
+  font-size: 12px;
+}
+
+.detail-box-piority {
+  width: 47%;
+}
+
+.detail-piority {
+  width: 100%;
+  height: 39px;
+  border-radius: 3px;
+  border: 1px solid #000000;
+  font-size: 12px;
+}
+
+.button-add {
+  margin-top: 50px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: 1px solid;
+  background-color: #5cb85c;
+  color: #ffffff;
+  border-radius: 5px;
+  height: 39px;
+  cursor: pointer;
+}
+
+.button-add:hover {
+  background-color: #0f7e2e;
+}
+
+@media (max-width: 768px) {
+  .button-remove {
+    width: 58px;
+    height: 24px;
+  }
+  .button-detail {
+    width: 58px;
+    height: 24px;
+  }
+}
+
+@media (max-width: 425px) {
+  .detail-datePiority {
+    display: block;
+    margin-top: 20px;
+  }
+
+  .detail-box-date {
+    width: 100%;
+  }
+
+  .detail-box-piority {
+    width: 100%;
+    margin-top: 20px;
+  }
+
+  .button-detail {
+    margin-right: 10px;
+  }
+}

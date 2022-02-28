@@ -1,0 +1,27 @@
+.root {
+  display: flex;
+  border: 1px solid #000000;
+  min-height: 98vh;
+}
+
+.container-left {
+  width: 40%;
+}
+
+.container-right {
+  width: 60%;
+}
+
+@media (max-width: 1023px) {
+  .root {
+    display: block;
+  }
+
+  .container-left {
+    width: 100%;
+  }
+
+  .container-right {
+    width: 100%;
+  }
+}
