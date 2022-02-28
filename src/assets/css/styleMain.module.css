@@ -1,13 +1,13 @@
-.main-root {
+.mainRoot {
   display: flex;
   border: 1px solid #000;
   min-height: 98vh;
 }
 
-.left-container {
+.leftContainer {
   width: 40%;
 }
 
-.right-container {
+.rightContainer {
   width: 60%;
 }

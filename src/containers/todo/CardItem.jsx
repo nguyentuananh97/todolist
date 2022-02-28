@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from "react";
 import { format } from "date-fns";
-import "../../assets/css/styleToDo.css";
+import classes from "../../assets/css/styleToDo.module.css";
 
 const CardItem = (props) => {
   const { item } = props;
-  const { data, setData } = props;
+  const { setData } = props;
   const { listRemove, setListRemove } = props;
   const [openDetail, setOpenDetail] = useState(false);
   const [title, setTitle] = useState("");
@@ -24,8 +24,8 @@ const CardItem = (props) => {
   };
 
   const clickRemoveButton = () => {
-    const newData = data.filter((el) => el.id !== item.id);
-    setData(newData);
+    setData((prevState) => prevState.filter((el) => el.id !== item.id));
+    setListRemove((prevState) => prevState.filter((el) => el !== item.id));
   };
 
   const changeTitle = (e) => {
@@ -44,55 +44,79 @@ const CardItem = (props) => {
     setPiority(e.target.value);
   };
 
+  const dateInPast = function (firstDate, secondDate) {
+    if (firstDate.setHours(0, 0, 0, 0) < secondDate.setHours(0, 0, 0, 0)) {
+      return true;
+    }
+    return false;
+  };
+
+  const checkValidate = () => {
+    if (title.length <= 0) {
+      alert("Title is required");
+      return false;
+    } else if (dateInPast(new Date(date), new Date())) {
+      alert("Invalid date");
+      return false;
+    }
+    return true;
+  };
+
   const clickUpdate = () => {
-    const oldData = Object.assign([], data);
-    const findData = oldData.find((el) => el.id === item.id);
-    findData.title = title;
-    findData.description = description;
-    findData.date = date;
-    findData.piority = piority;
-    setData(oldData);
+    if (checkValidate()) {
+      setData((prevState) => {
+        const oldData = Object.assign([], prevState);
+        const findData = oldData.find((el) => el.id === item.id);
+        findData.title = title;
+        findData.description = description;
+        findData.date = date;
+        findData.piority = piority;
+        return oldData;
+      });
+    }
   };
 
   const clickCheckbox = (e) => {
     if (e.target.checked) {
-      const newList = Object.assign([], listRemove);
-      newList.push(item.id);
-      setListRemove(newList);
+      setListRemove((prevState) => [...prevState, item.id]);
     } else {
-      const newList = listRemove.filter((el) => el !== item.id);
-      setListRemove(newList);
+      setListRemove((prevState) => prevState.filter((el) => el !== item.id));
     }
   };
 
   return (
     <div style={{ marginBottom: 30 }}>
-      <div className="card-root">
+      <div className={classes.cardRoot}>
         <div>
-          <input type="checkbox" value={item.id} onChange={clickCheckbox} />
+          <input
+            type="checkbox"
+            value={item.id}
+            checked={listRemove.includes(item.id)}
+            onChange={clickCheckbox}
+          />
         </div>
-        <div className="card-title">{item.title}</div>
+        <div className={classes.cardTitle}>{item.title}</div>
         <div style={{ flexGrow: 1 }}></div>
-        <div className="button-detail" onClick={clickDetailButton}>
+        <div className={classes.buttonDetail} onClick={clickDetailButton}>
           Detail
         </div>
-        <div className="button-remove" onClick={clickRemoveButton}>
+        <div className={classes.buttonRemove} onClick={clickRemoveButton}>
           Remove
         </div>
       </div>
       {openDetail ? (
-        <div className="card-detail">
+        <div className={classes.cardDetail}>
           <input
             type="text"
-            className="input-title"
+            className={classes.inputTitle}
             placeholder="Enter task name ..."
             value={title}
             onChange={changeTitle}
           />
-          <div className="description">
-            <div className="label">Description</div>
+          <div className={classes.description}>
+            <div className={classes.label}>Description</div>
             <textarea
-              className="textarea"
+              className={classes.textarea}
               rows="10"
               value={description}
               onChange={changeDescription}
@@ -101,21 +125,21 @@ const CardItem = (props) => {
 
           <div style={{ display: "flex", marginTop: 20 }}>
             <div style={{ width: "47%", marginRight: "6%" }}>
-              <div className="label">Due Date</div>
+              <div className={classes.label}>Due Date</div>
               <input
                 type="date"
-                className="due-date"
+                className={classes.dueDate}
                 value={date}
                 onChange={changeDate}
                 min={format(new Date(), "yyyy-MM-dd")}
               />
             </div>
             <div style={{ width: "47%" }}>
-              <div className="label" value={piority}>
+              <div className={classes.label} value={piority}>
                 Piority
               </div>
               <select
-                className="piority"
+                className={classes.piority}
                 value={piority}
                 onChange={changePiority}
               >
@@ -125,7 +149,7 @@ const CardItem = (props) => {
               </select>
             </div>
           </div>
-          <div className="button-add" onClick={clickUpdate}>
+          <div className={classes.buttonAdd} onClick={clickUpdate}>
             Update
           </div>
         </div>

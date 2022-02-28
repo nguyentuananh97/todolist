@@ -1,9 +1,10 @@
-import React, { useState } from "react";
+import React, { useRef, useState } from "react";
 import { format } from "date-fns";
-import "../../assets/css/styleNewTask.css";
+import classes from "../../assets/css/styleNewTask.module.css";
 
 const NewTask = (props) => {
-  const { data, setData } = props;
+  const { setData } = props;
+  const idRef = useRef(1);
   const [id, setId] = useState(1);
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
@@ -26,29 +27,36 @@ const NewTask = (props) => {
     setPiority(e.target.value);
   };
 
-  const check = () => {
+  const dateInPast = function (firstDate, secondDate) {
+    if (firstDate.setHours(0, 0, 0, 0) < secondDate.setHours(0, 0, 0, 0)) {
+      return true;
+    }
+    return false;
+  };
+
+  const checkValidate = () => {
     if (title.length <= 0) {
+      alert("Title is required");
+      return false;
+    } else if (dateInPast(new Date(date), new Date())) {
+      alert("Invalid date");
       return false;
     }
     return true;
   };
 
   const clickAdd = () => {
-    if (check()) {
+    if (checkValidate()) {
       const newData = {
-        id: id,
+        id: idRef.current,
         title: title,
         description: description,
         date: date,
         piority: piority,
       };
-      const oldData = Object.assign([], data);
-      oldData.push(newData);
-      setData(oldData);
+      setData((prevState) => [...prevState, newData]);
       resetData();
-      setId(id + 1);
-    } else {
-      alert("Title is required");
+      idRef.current += 1;
     }
   };
 
@@ -60,20 +68,20 @@ const NewTask = (props) => {
   };
 
   return (
-    <div className="newtask-root">
-      <div className="newtask-header">New Task</div>
-      <div className="newtask-content">
+    <div className={classes.newtaskRoot}>
+      <div className={classes.newtaskHeader}>New Task</div>
+      <div className={classes.newtaskContent}>
         <input
           type="text"
-          className="input-title"
+          className={classes.inputTitle}
           placeholder="Add new task ..."
           value={title}
           onChange={changeTitle}
         />
-        <div className="description">
-          <div className="label">Description</div>
+        <div className={classes.description}>
+          <div className={classes.label}>Description</div>
           <textarea
-            className="textarea"
+            className={classes.textarea}
             rows="10"
             onChange={changeDescription}
             value={description}
@@ -81,19 +89,19 @@ const NewTask = (props) => {
         </div>
         <div style={{ display: "flex", marginTop: 20 }}>
           <div style={{ width: "47%", marginRight: "6%" }}>
-            <div className="label">Due Date</div>
+            <div className={classes.label}>Due Date</div>
             <input
               type="date"
-              className="due-date"
+              className={classes.dueDate}
               value={date}
               onChange={changeDate}
               min={format(new Date(), "yyyy-MM-dd")}
             />
           </div>
           <div style={{ width: "47%" }}>
-            <div className="label">Piority</div>
+            <div className={classes.label}>Piority</div>
             <select
-              className="piority"
+              className={classes.piority}
               value={piority}
               onChange={changePiority}
             >
@@ -104,8 +112,8 @@ const NewTask = (props) => {
           </div>
         </div>
       </div>
-      <div className="newtask-footer">
-        <div className="button-add" onClick={clickAdd}>
+      <div className={classes.newtaskFooter}>
+        <div className={classes.buttonAdd} onClick={clickAdd}>
           Add
         </div>
       </div>

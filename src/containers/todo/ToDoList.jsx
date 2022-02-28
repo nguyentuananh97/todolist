@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import CardItem from "./CardItem";
-import "../../assets/css/styleToDo.css";
+import classes from "../../assets/css/styleToDo.module.css";
 
 const ToDoList = (props) => {
   const { data, setData } = props;
@@ -29,24 +29,25 @@ const ToDoList = (props) => {
   };
 
   const clickRemove = () => {
-    const newData = data.filter((el) => !listRemove.includes(el.id));
-    setData(newData);
+    setData((prevState) =>
+      prevState.filter((el) => !listRemove.includes(el.id))
+    );
     setListRemove([]);
   };
 
   return (
-    <div className="todo-root">
-      <div className="todo-main">
-        <div className="todo-header">To Do List</div>
-        <div className="todo-content">
+    <div className={classes.todoRoot}>
+      <div className={classes.todoMain}>
+        <div className={classes.todoHeader}>To Do List</div>
+        <div className={classes.todoContent}>
           <input
             type="text"
-            className="input-search"
+            className={classes.inputSearch}
             placeholder="Search ..."
             value={searchValue}
             onChange={searchData}
           />
-          <div className="todo-item">
+          <div className={classes.todoItem}>
             {dataSearch.length > 0 ? (
               dataSearch.map((item, index) => (
                 <CardItem
@@ -67,11 +68,11 @@ const ToDoList = (props) => {
         </div>
       </div>
       {listRemove.length > 0 ? (
-        <div className="todo-footer">
+        <div className={classes.todoFooter}>
           <div>Bulk Action:</div>
           <div style={{ flexGrow: 1 }}></div>
-          <div className="button-detail">Done</div>
-          <div className="button-remove" onClick={clickRemove}>
+          <div className={classes.buttonDetail}>Done</div>
+          <div className={classes.buttonRemove} onClick={clickRemove}>
             Remove
           </div>
         </div>
