@@ -29,6 +29,9 @@ const ToDoList = (props) => {
   };
 
   const clickRemove = () => {
+    const myStorage = JSON.parse(localStorage.getItem("data"));
+    const newData = myStorage.filter((el) => !listRemove.includes(el.id));
+    localStorage.setItem("data", JSON.stringify(newData));
     setData((prevState) =>
       prevState.filter((el) => !listRemove.includes(el.id))
     );

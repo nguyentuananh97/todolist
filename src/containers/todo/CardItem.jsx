@@ -24,6 +24,9 @@ const CardItem = (props) => {
   };
 
   const clickRemoveButton = () => {
+    const myStorage = JSON.parse(localStorage.getItem("data"));
+    const newData = myStorage.filter((el) => el.id !== item.id);
+    localStorage.setItem("data", JSON.stringify(newData));
     setData((prevState) => prevState.filter((el) => el.id !== item.id));
     setListRemove((prevState) => prevState.filter((el) => el !== item.id));
   };
@@ -62,8 +65,19 @@ const CardItem = (props) => {
     return true;
   };
 
+  const updateLocalStorage = () => {
+    const myStorage = JSON.parse(localStorage.getItem("data"));
+    const findData = myStorage.find((el) => el.id === item.id);
+    findData.title = title;
+    findData.description = description;
+    findData.date = date;
+    findData.piority = piority;
+    localStorage.setItem("data", JSON.stringify(myStorage));
+  };
+
   const clickUpdate = () => {
     if (checkValidate()) {
+      updateLocalStorage();
       setData((prevState) => {
         const oldData = Object.assign([], prevState);
         const findData = oldData.find((el) => el.id === item.id);
