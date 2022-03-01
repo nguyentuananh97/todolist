@@ -58,6 +58,12 @@ const CardItem = (props) => {
     if (title.length <= 0) {
       alert("Title is required");
       return false;
+    } else if (
+      new Date(date) == "Invalid Date" ||
+      (!isNaN(date) && isNaN(Date.parse(date)))
+    ) {
+      alert("Invalid date");
+      return false;
     } else if (dateInPast(new Date(date), new Date())) {
       alert("Invalid date");
       return false;
