@@ -16,7 +16,9 @@ const ToDoList = (props) => {
         .sort((a, b) => new Date(a.date) - new Date(b.date));
       setDataSearch(sortedActivities);
     } else {
-      const newData = data.filter((el) => el.title.includes(searchValue));
+      const newData = data.filter((el) =>
+        el.title.toLowerCase().includes(searchValue.toLowerCase())
+      );
       const sortedActivities = newData
         .slice()
         .sort((a, b) => new Date(a.date) - new Date(b.date));
